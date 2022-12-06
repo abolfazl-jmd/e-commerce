@@ -1,10 +1,18 @@
 import { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
+import {
+  addToCart,
+  deleteFromCart,
+} from "../../redux/shoppingCart/shoppingCartActions";
 import { getOneProduct } from "../../Services/oneProductServices";
 
 const ProductDetail = () => {
   const [product, setProduct] = useState();
+  const [isProductInCart, setIsProductInCart] = useState(false);
   const { id } = useParams();
+  const dispatch = useDispatch();
+  const shoppingCart = useSelector((state) => state.cart);
 
   const getProductDetailsHandler = async () => {
     try {
@@ -17,6 +25,18 @@ const ProductDetail = () => {
       setProduct(data);
     } catch (error) {
       return <span>{error.message}</span>;
+    }
+  };
+
+  const addToCartHandler = (id) => {
+    const isProductInCart = shoppingCart.find((product) => product.id === id);
+
+    if (!isProductInCart) {
+      dispatch(addToCart(product));
+      setIsProductInCart(true);
+    } else {
+      dispatch(deleteFromCart(product.id));
+      setIsProductInCart(false);
     }
   };
 
@@ -45,8 +65,11 @@ const ProductDetail = () => {
           <div className="my-4">
             <p>{product.description}</p>
           </div>
-          <button className="w-32 border p-2 capitalize bg-secondary text-primary-light">
-            add to cart
+          <button
+            className="w-36 border p-2 capitalize bg-secondary text-primary-light disabled:bg-slate-400"
+            onClick={() => addToCartHandler(product.id)}
+          >
+            {isProductInCart ? "Delete from cart" : "Add to cart"}
           </button>
         </article>
       );
