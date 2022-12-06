@@ -13,6 +13,9 @@ const Navbar = () => {
         <NavLink
           className="text-lg text-dark-lightest hover:text-secondary-light transition-all"
           to="/products"
+          style={(isActive) => ({
+            color: isActive ? "text-secondary-light" : "text-dark-lightest",
+          })}
         >
           <li>Products</li>
         </NavLink>

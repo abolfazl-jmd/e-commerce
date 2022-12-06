@@ -1,11 +1,13 @@
 import CategoriesList from "../components/Categories/CategoriesList";
 import Navbar from "../components/Navbar/Navbar";
+import Layout from "../layout/layout";
 
 const HomePage = () => {
   return (
     <>
-      <Navbar />
-      <CategoriesList />
+      <Layout>
+        <CategoriesList />
+      </Layout>
     </>
   );
 };
