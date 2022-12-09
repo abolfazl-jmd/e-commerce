@@ -61,15 +61,18 @@ const CategoriesList = () => {
   }, []);
 
   return (
-    <section className="border flex items-center justify-evenly p-4 w-3/4 my-8 mx-auto">
-      {categories &&
-        categories.map((categoryItem) => (
-          <Category
-            key={categoryItem.id}
-            image={categoryItem.image}
-            label={categoryItem.label}
-          />
-        ))}
+    <section className="border p-4 w-3/4 my-8 mx-auto">
+      <h1 className="font-bold">Categories</h1>
+      <div className="flex items-center gap-4 justify-evenly my-4">
+        {categories &&
+          categories.map((categoryItem) => (
+            <Category
+              key={categoryItem.id}
+              image={categoryItem.image}
+              label={categoryItem.label}
+            />
+          ))}
+      </div>
     </section>
   );
 };
