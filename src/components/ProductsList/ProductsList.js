@@ -2,7 +2,6 @@ import { useEffect, useState } from "react";
 import Product from "../Product/Product";
 import { getAllProducts } from "../../Services/productsServices";
 import { useQuery } from "../../Hooks/useQuery";
-import { render } from "@testing-library/react";
 
 const ProductsList = () => {
   const [products, setProducts] = useState(null);
