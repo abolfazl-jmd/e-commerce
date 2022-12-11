@@ -1,12 +1,12 @@
 import { NavLink, useLocation } from "react-router-dom";
 
 const Category = ({ label, image }) => {
-  const { pathname } = useLocation();
+  // const { pathname } = useLocation();
 
   return (
     <NavLink
       className="w-80 h-60 flex flex-col rounded-xl border overflow-hidden cursor-pointer hover:-translate-y-1 transition-all hover:shadow-md"
-      to={`${pathname}/products/$`}
+      to={`/products?search=${label}`}
     >
       <article>
         <div className="flex-1 w-full h-3/4">

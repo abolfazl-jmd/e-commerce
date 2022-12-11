@@ -1,20 +1,36 @@
 import { useEffect, useState } from "react";
 import Product from "../Product/Product";
 import { getAllProducts } from "../../Services/productsServices";
+import { useQuery } from "../../Hooks/useQuery";
 
 const ProductsList = () => {
   const [products, setProducts] = useState(null);
+  const query = useQuery();
+  const searchQuery = query.get("search");
+  const BASE_URL_API = process.env.REACT_APP_BASE_URL_API;
 
   const getProductsHandler = async () => {
-    try {
-      const response = await getAllProducts();
-      const data = response.data;
+    // if search query exist then we get products in that category otherwise we get all products
+    if (searchQuery) {
+      try {
+        const response = await fetch(
+          `${BASE_URL_API}/products/category/${searchQuery}`
+        );
+        const data = await response.json();
+        setProducts(data);
+      } catch (error) {
+        return <span>{error.message}</span>;
+      }
+    } else {
+      try {
+        const response = await getAllProducts();
+        const data = response.data;
 
-      if (!data) throw new Error("Sorry, please try again!");
-      console.log(data);
-      setProducts(data);
-    } catch (error) {
-      return <span>{error.message}</span>;
+        if (!data) throw new Error("Sorry, please try again!");
+        setProducts(data);
+      } catch (error) {
+        return <span>{error.message}</span>;
+      }
     }
   };
 
