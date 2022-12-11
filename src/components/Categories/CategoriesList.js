@@ -15,13 +15,13 @@ const CategoriesList = () => {
         return Electronics;
       }
       case "jewelery": {
-        return WomenClothes;
+        return Jwelery;
       }
       case "men's clothing": {
         return MenClothes;
       }
       case "women's clothing": {
-        return Jwelery;
+        return WomenClothes;
       }
       default:
         return;
