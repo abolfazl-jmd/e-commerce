@@ -1,4 +1,4 @@
-# Project Title
+# E-commerce application
 
 This is a simple e-commerce application that allows you to see products, categories and products in specific categories and add products to your shopping cart. In order to run the app properly, you need to add your own API to the project. To do so, simply provide the API in .env file with the following name. Then, just restart the application and enjoy.
 
